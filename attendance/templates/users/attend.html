@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="heading">Attend Class</h1>
+    <div class= "container">
+      <p class="w-message">By Clicking The Button Below You Will Marked Present</p>
+      <form method="POST">
+        {% csrf_token %}
+        <button class="b-attend">ATTEND</button>
+      </form>
+        {% if status == 2 %}
+        <p class="e-message">sorry you can't attend class more than once a day!</p>
+        {% endif %}
+    
+    
+        {% if status == 3 %}
+        <p class="w-message">your account has been created sucessfuly</p>
+        {% endif %}
+    
+    
+        
+        {% if status == 0 %}
+            <p class="e-message">you gotta login first!</p>
+            <a href = "{% url 'login' %}">LOGIN</a>
+            <a href = "{% url 'register' %}">REGISTER</a>
+        {% endif %}
+    </div>
+    {% endblock %}
